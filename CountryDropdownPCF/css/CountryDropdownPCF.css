@@ -1,0 +1,14 @@
+/*
+ * Container-level rules only. Component styling uses Fluent UI v9 tokens
+ * (makeStyles) so it follows the host theme. PCF scopes this file under the
+ * control's namespace/constructor class.
+ */
+.TalhaPCF\.CountryDropdownPCF {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.TalhaPCF\.CountryDropdownPCF * {
+    box-sizing: border-box;
+}

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+
+  <data name="CountryDropdownPCF_Display_Key" xml:space="preserve"><value>Searchable Country Dropdown</value></data>
+  <data name="CountryDropdownPCF_Desc_Key" xml:space="preserve"><value>Searchable country picker for a Single Line of Text column. Countries are loaded from a configurable Dataverse table; the selected name is saved by the normal form save.</value></data>
+
+  <data name="CountryValue_Display_Key" xml:space="preserve"><value>Country (text column)</value></data>
+  <data name="CountryValue_Desc_Key" xml:space="preserve"><value>The Single Line of Text column that stores the selected country name.</value></data>
+
+  <data name="CountryTableName_Display_Key" xml:space="preserve"><value>Country table logical name</value></data>
+  <data name="CountryTableName_Desc_Key" xml:space="preserve"><value>Logical name of the Dataverse table that holds countries, e.g. new_country.</value></data>
+
+  <data name="CountryNameColumn_Display_Key" xml:space="preserve"><value>Country name column logical name</value></data>
+  <data name="CountryNameColumn_Desc_Key" xml:space="preserve"><value>Logical name of the column holding the country display name, e.g. new_name.</value></data>
+
+  <data name="CountryCodeColumn_Display_Key" xml:space="preserve"><value>Country code column logical name (optional)</value></data>
+  <data name="CountryCodeColumn_Desc_Key" xml:space="preserve"><value>Optional logical name of a code column, e.g. new_code. Shown beside the name and searchable.</value></data>
+
+  <data name="ActiveRecordsOnly_Display_Key" xml:space="preserve"><value>Active records only</value></data>
+  <data name="ActiveRecordsOnly_Desc_Key" xml:space="preserve"><value>When Yes, only rows with statecode = 0 (Active) are listed. Set to No for tables without a statecode column (e.g. virtual tables).</value></data>
+  <data name="Yes_Display_Key" xml:space="preserve"><value>Yes</value></data>
+  <data name="No_Display_Key" xml:space="preserve"><value>No</value></data>
+</root>

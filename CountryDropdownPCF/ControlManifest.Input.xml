@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <!--
+    CountryDropdownPCF
+    Virtual (React) control: uses the platform-provided React 16.14 and Fluent UI v9
+    libraries instead of bundling its own copies.
+  -->
+  <control namespace="TalhaPCF"
+           constructor="CountryDropdownPCF"
+           version="1.0.0"
+           display-name-key="CountryDropdownPCF_Display_Key"
+           description-key="CountryDropdownPCF_Desc_Key"
+           control-type="virtual">
+
+    <external-service-usage enabled="false"></external-service-usage>
+
+    <!-- ===================== BOUND PROPERTY ===================== -->
+    <!-- The Single Line of Text column the control is placed on.
+         The selected country's display name is written here and persisted
+         by the normal form Save. -->
+    <property name="countryValue"
+              display-name-key="CountryValue_Display_Key"
+              description-key="CountryValue_Desc_Key"
+              of-type="SingleLine.Text"
+              usage="bound"
+              required="true" />
+
+    <!-- ================ INPUT / CONFIGURATION PROPERTIES ================ -->
+    <!-- Set as static values in the form designer when the control is added. -->
+    <property name="countryTableName"
+              display-name-key="CountryTableName_Display_Key"
+              description-key="CountryTableName_Desc_Key"
+              of-type="SingleLine.Text"
+              usage="input"
+              required="true"
+              default-value="new_country" />
+
+    <property name="countryNameColumn"
+              display-name-key="CountryNameColumn_Display_Key"
+              description-key="CountryNameColumn_Desc_Key"
+              of-type="SingleLine.Text"
+              usage="input"
+              required="true"
+              default-value="new_name" />
+
+    <property name="countryCodeColumn"
+              display-name-key="CountryCodeColumn_Display_Key"
+              description-key="CountryCodeColumn_Desc_Key"
+              of-type="SingleLine.Text"
+              usage="input"
+              required="false" />
+
+    <property name="activeRecordsOnly"
+              display-name-key="ActiveRecordsOnly_Display_Key"
+              description-key="ActiveRecordsOnly_Desc_Key"
+              of-type="Enum"
+              usage="input"
+              required="false"
+              default-value="1">
+      <value name="Yes" display-name-key="Yes_Display_Key">1</value>
+      <value name="No" display-name-key="No_Display_Key">0</value>
+    </property>
+
+    <resources>
+      <code path="index.ts" order="1" />
+      <platform-library name="React" version="16.14.0" />
+      <platform-library name="Fluent" version="9.46.2" />
+      <css path="css/CountryDropdownPCF.css" order="1" />
+      <resx path="strings/CountryDropdownPCF.1033.resx" version="1.0.0" />
+    </resources>
+
+    <feature-usage>
+      <uses-feature name="WebAPI" required="true" />
+    </feature-usage>
+  </control>
+</manifest>

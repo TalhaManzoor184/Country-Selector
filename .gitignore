@@ -1,0 +1,14 @@
+# dependencies
+/node_modules
+
+# generated
+/out
+/bin
+/obj
+/CountryDropdownPCF/generated
+/Solution/*/bin
+/Solution/*/obj
+
+# misc
+*.pcfproj.user
+.DS_Store
