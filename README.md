@@ -139,8 +139,8 @@ pac pcf push --publisher-prefix tal
 
 **Automated (recommended):** every push to `main` runs `.github/workflows/build-solution.yml` on GitHub Actions and
 uploads `CountrySelector_managed.zip` and `CountrySelector.zip` as the run's artifact
-(*Actions → Build PCF solution → latest run → Artifacts*). Pushing a tag such as `v1.0.0` also attaches both zips to a
-GitHub Release.
+(*Actions → Build PCF solution → latest run → Artifacts*). Publishing a GitHub Release (or pushing a `v*` tag) also
+attaches both zips to that release.
 
 **Locally:**
 
