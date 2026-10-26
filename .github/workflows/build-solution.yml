@@ -36,7 +36,27 @@ jobs:
 
       - name: Build PCF and package solution (managed + unmanaged)
         shell: pwsh
-        run: ./scripts/Build-Solution.ps1 -PublisherName "Talha" -PublisherPrefix "tal" -SolutionName "CountrySelector" -PackageType Both
+        run: ./scripts/Build-Solution.ps1 -PublisherName "TalhaManzoor" -PublisherDisplayName "Talha Manzoor" -PublisherPrefix "tal" -SolutionName "CountrySelector" -PackageType Both
+
+      - name: Verify managed solution
+        shell: pwsh
+        run: |
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          $zip = Get-Item "Solution/CountrySelector/bin/Release/CountrySelector_managed.zip"
+          $archive = [IO.Compression.ZipFile]::OpenRead($zip.FullName)
+          try {
+            $entry = $archive.Entries | Where-Object FullName -eq "solution.xml"
+            $reader = New-Object IO.StreamReader($entry.Open())
+            [xml]$sx = $reader.ReadToEnd(); $reader.Close()
+            $m = $sx.ImportExportXml.SolutionManifest
+            $pub = ($m.Publisher.LocalizedNames.LocalizedName | Select-Object -First 1).description
+            Write-Host "Solution: $($m.UniqueName) v$($m.Version) managed=$($m.Managed)"
+            Write-Host "Publisher: $pub ($($m.Publisher.UniqueName)) prefix=$($m.Publisher.CustomizationPrefix)"
+            $archive.Entries | ForEach-Object { Write-Host "  $($_.FullName)" }
+            if ($m.Managed -ne "1") { throw "Solution is not managed" }
+            if ($pub -ne "Talha Manzoor") { throw "Unexpected publisher display name: $pub" }
+            if (-not ($archive.Entries | Where-Object FullName -like "Controls/*bundle.js")) { throw "PCF bundle missing" }
+          } finally { $archive.Dispose() }
 
       - name: Upload solution zips
         uses: actions/upload-artifact@v4

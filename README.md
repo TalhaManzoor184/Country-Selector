@@ -145,7 +145,7 @@ attaches both zips to that release.
 **Locally:**
 
 ```powershell
-.\scripts\Build-Solution.ps1 -PublisherName "Talha" -PublisherPrefix "tal" -PackageType Both
+.\scripts\Build-Solution.ps1 -PublisherName "TalhaManzoor" -PublisherDisplayName "Talha Manzoor" -PublisherPrefix "tal" -PackageType Both
 ```
 
 What it runs:
@@ -154,7 +154,8 @@ What it runs:
 npm ci
 npm run build:prod
 mkdir Solution\CountrySelector; cd Solution\CountrySelector
-pac solution init --publisher-name Talha --publisher-prefix tal
+pac solution init --publisher-name TalhaManzoor --publisher-prefix tal
+# then set the publisher display name to "Talha Manzoor" in src\Other\Solution.xml (the script does this)
 pac solution add-reference --path ..\..
 dotnet build --configuration Release      # SolutionPackageType = Both
 # -> Solution\CountrySelector\bin\Release\CountrySelector.zip and CountrySelector_managed.zip

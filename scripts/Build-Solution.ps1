@@ -3,7 +3,7 @@
   Builds CountryDropdownPCF and packages it into a Dataverse solution.
 
 .EXAMPLE
-  .\scripts\Build-Solution.ps1 -PublisherName "Talha" -PublisherPrefix "tal" -PackageType Both
+  .\scripts\Build-Solution.ps1 -PublisherName "TalhaManzoor" -PublisherDisplayName "Talha Manzoor" -PublisherPrefix "tal" -PackageType Both
 
   Output (Solution\CountrySelector\bin\Release):
     CountrySelector.zip            unmanaged
@@ -11,11 +11,16 @@
 #>
 [CmdletBinding()]
 param(
-    [string]$PublisherName = "Talha",
+    # Publisher unique name: letters, digits, underscore only (no spaces)
+    [ValidatePattern('^[A-Za-z_][A-Za-z0-9_]*$')]
+    [string]$PublisherName = "TalhaManzoor",
+    # Publisher display name shown in Dataverse (spaces allowed)
+    [string]$PublisherDisplayName = "Talha Manzoor",
     [ValidatePattern('^[a-z][a-z0-9]{1,7}$')]
     [string]$PublisherPrefix = "tal",
     [ValidatePattern('^[A-Za-z][A-Za-z0-9_]*$')]
     [string]$SolutionName = "CountrySelector",
+    [string]$SolutionDisplayName = "Country Selector",
     [ValidateSet("Unmanaged", "Managed", "Both")]
     [string]$PackageType = "Both"
 )
@@ -47,6 +52,16 @@ if (-not (Test-Path $cdsproj)) {
     }
     finally { Pop-Location }
 }
+
+# Set publisher and solution display names in Solution.xml
+$solutionXmlPath = Join-Path $solutionDir "src\Other\Solution.xml"
+[xml]$sx = Get-Content $solutionXmlPath -Encoding UTF8
+$manifest = $sx.ImportExportXml.SolutionManifest
+foreach ($ln in $manifest.LocalizedNames.LocalizedName) { $ln.SetAttribute("description", $SolutionDisplayName) }
+$manifest.Publisher.UniqueName = $PublisherName
+foreach ($ln in $manifest.Publisher.LocalizedNames.LocalizedName) { $ln.SetAttribute("description", $PublisherDisplayName) }
+$sx.Save($solutionXmlPath)
+Write-Host "Publisher: $PublisherDisplayName ($PublisherName), prefix $PublisherPrefix" -ForegroundColor Cyan
 
 # Set the package type (Unmanaged / Managed / Both) in the .cdsproj
 [xml]$xml = Get-Content $cdsproj
